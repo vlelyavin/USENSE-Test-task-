@@ -1,0 +1,20 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app__container {
+  max-width: 480px;
+  width: 100%;
+  padding: 20px;
+  border: 3px solid #e6e6e6;
+  border-radius: 5px;
+}
+
+.app__container__title {
+  font-size: 25px;
+  margin: 0 0 10px 0;
+}

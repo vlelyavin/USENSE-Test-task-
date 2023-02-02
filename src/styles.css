@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --lightgray: #e6e6e6;
+  --lightblue: #03a1fc;
+  --red: #960000;
+  --yellow: #d9d900;
+  --green: #00ad14;
+}
+
+body,
+input {
+  font-family: "Itim", cursive;
+}
