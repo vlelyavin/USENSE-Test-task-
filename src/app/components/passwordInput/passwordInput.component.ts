@@ -16,10 +16,6 @@ export class InputComponent {
     this.data.currentValue.subscribe((value) => (this.value = value));
   }
 
-  handleClick() {
-    this.isActive = !this.isActive;
-  }
-
   // sets new data service value when input value is changed
   handleChange(event: Event) {
     this.data.setValue((event.target as HTMLInputElement).value);
