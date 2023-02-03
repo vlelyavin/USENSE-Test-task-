@@ -8,19 +8,20 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class InputComponent {
   value: string;
+  public isActive = false;
+
   constructor(private data: DataService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.data.currentValue.subscribe((value) => (this.value = value));
   }
-
-  public isActive = false;
 
   handleClick() {
     this.isActive = !this.isActive;
   }
 
-  handleChange(event: any) {
-    this.data.setValue(event.target.value);
+  // sets new data service value when input value is changed
+  handleChange(event: Event) {
+    this.data.setValue((event.target as HTMLInputElement).value);
   }
 }

@@ -7,32 +7,33 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./passwordStrength.component.css'],
 })
 export class passwordStrengthComponent implements AfterViewInit {
-  @ViewChild('first') first: ElementRef;
-  @ViewChild('second') second: ElementRef;
-  @ViewChild('third') third: ElementRef;
+  @ViewChild('firstLine') firstLine: ElementRef;
+  @ViewChild('secondLine') secondLine: ElementRef;
+  @ViewChild('thirdLine') thirdLine: ElementRef;
 
-  value: string;
   public passwordComplexity: string = 'this field should not be empty';
+  value: string;
 
   constructor(private data: DataService) {}
 
-  ngAfterViewInit(): void {
-    this.data.currentValue.subscribe((value) => {
-      this.value = value;
+  ngAfterViewInit() {
+    this.data.currentValue.subscribe((newValue) => {
+      this.value = newValue;
       this.handleValueChange(this.value);
     });
   }
 
+  // depending on a str argument, calls toggleLineColor function, which changes the background color of the status lines and password complexity string
   setStatus(str: string) {
     const toggleLineColor = (
-      firstColor: string,
-      secondColor: string,
-      thirdColor: string,
+      firstLineColor: string,
+      secondLineColor: string,
+      thirdLineColor: string,
       str: string
     ) => {
-      this.first.nativeElement.style.background = firstColor;
-      this.second.nativeElement.style.background = secondColor;
-      this.third.nativeElement.style.background = thirdColor;
+      this.firstLine.nativeElement.style.background = firstLineColor;
+      this.secondLine.nativeElement.style.background = secondLineColor;
+      this.thirdLine.nativeElement.style.background = thirdLineColor;
       this.passwordComplexity = str;
     };
 
@@ -69,7 +70,7 @@ export class passwordStrengthComponent implements AfterViewInit {
           'var(--yellow)',
           'var(--yellow)',
           'var(--lightgray)',
-          'your password is medium'
+          'medium password'
         );
         break;
       }
@@ -83,10 +84,11 @@ export class passwordStrengthComponent implements AfterViewInit {
         break;
       }
       default:
-        return;
+        break;
     }
   }
 
+  // calls setStatus method depending on the condition
   handleValueChange(value: string) {
     const onlyNumbers = /^\d+$/; // checks if string contains only numbers
     const onlySymbols = /^[^a-zA-Z0-9]+$/; // checks if string contains only symbols
